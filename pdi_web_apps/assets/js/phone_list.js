@@ -1,4 +1,4 @@
-var entry_point = 'http://localhost:8888/habitantes/telefones'
+var entry_point = 'http://pdi-apps.aws.af.cm/habitantes/telefones'
 
 /*
   Acessa o webservice, aplicando a callback na resposta.
@@ -40,7 +40,7 @@ function toggle_search_fields(button) {
   {
     hidden_fields.hide('slow');
     expand_icon.removeClass('icon-minus').addClass('icon-plus');
-    hidden_fields.val('');
+    hidden_fields.find('.search-query').val('');
   } else
   {
     hidden_fields.show('slow');
