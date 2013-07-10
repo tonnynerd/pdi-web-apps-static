@@ -10,8 +10,27 @@
     <!-- Le styles -->
     <link href="../assets/css/bootstrap.css" rel="stylesheet">
     <style>
+      html, body {
+        height: 80%;
+      }
+
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        height: 100%;
+      }
+
+      /* Wrapper for page content to push down footer */
+      #wrap {
+        min-height: 100%;
+        /*height: auto !important;*/
+        /* Negative indent footer by it's height */
+        margin: 0 auto 0;
+      }
+
+      /* Set the fixed height of the footer here */
+      #footer {
+        height: 60px;
+        text-align: center;
       }
 
       #loading {
@@ -84,6 +103,7 @@
       </div>
     </div>
 
+    <div id="wrap">
     <div class="container text-center">
       <form>
         <table id="search-fields">
@@ -94,11 +114,12 @@
               </p>
             </td>
             <td>
-              <button id="search" type="submit" class="btn" tabindex="4">Buscar</button>
-              <button id="expand" class="btn" tabindex="5"><i class="icon-plus"></i></button>
-              <button id="clear" type="reset" class="btn" tabindex="6">
+              <button id="search" type="submit" class="btn" tabindex="4" title="Buscar">Buscar</button>
+              <button id="expand" class="btn" tabindex="5"><i class="icon-plus" title="Busca avançada"></i></button>
+              <button id="clear" type="reset" class="btn" tabindex="6" title="Limpar campos">
                 <i class="icon-remove"></i>
               </button>
+              <button id="clear-list" class="btn" tabindex="7" title="Limpar resultados"><i class="icon-off"></i></button>
               <p></p>
             </td>
           </tr>
@@ -120,13 +141,25 @@
           </tr>
         </table>
       </form>
-      <div class="accordion" id="phone-list"></div>
+      <div class="accordion" id="phone-list">
+      </div>
 
       <div id="loading">
         <img src="../assets/img/loading.gif" alt="Carregando ...">
       </div>
 
     </div> <!-- /container -->
+    </div>
+
+
+    <div id="footer">
+      <hr>
+      <p>
+        <a href="https://github.com/tonnynerd">&copy; Antonio Dourado</a>
+         - powered by <a href="http://pdi.pti.org.br">PDI</a>
+         - <a href="https://github.com/tonnynerd/pdi-web-apps">Contribua!</a>
+       </p>
+    </div>
 
     <!-- Le javascript
     ================================================== -->
