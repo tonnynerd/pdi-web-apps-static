@@ -1,4 +1,4 @@
-var entry_point = 'http://pdi-apps.aws.af.cm/habitantes/telefones'
+var entry_point = window.location.origin + '/habitantes/telefones'
 
 /*
   Acessa o webservice, aplicando a callback na resposta.
@@ -28,6 +28,13 @@ function is_advanced () {
   var hidden_fields = $('tr.hidden-search-field');
   var expand_icon = $('#expand').find('i');
   return (hidden_fields.css('display') !== "none") && expand_icon.hasClass('icon-minus');
+}
+
+
+function clear_list () {
+  $('#phone-list').find('.item').each(function (index) {
+    $(this).remove();
+  });
 }
 
 /*
@@ -70,11 +77,16 @@ function new_item (person_data, item_id, parent_id) {
 
   var head = $('<div></div>').addClass('accordion-heading');
 
-  head.append($('<a></a>', {
-    'href': '#' + item_id,
-    'data-toggle': 'collapse',
-    'data-parent': '#' + parent_id
-  }).addClass('accordion-toggle').text(toTitle(person_data.nome)));
+  var phone = $('<span></span>').addClass('muted pull-right').text(person_data.telefone);
+  var name = $('<span></span>').text(toTitle(person_data.nome));
+  var link = $('<a></a>', {
+      'href': '#' + item_id,
+      'data-toggle': 'collapse',
+      'data-parent': '#' + parent_id
+    }).addClass('accordion-toggle');
+  link.append(name)
+  link.append(phone);
+  head.append(link);
 
   main_div.append(head);
 
@@ -104,6 +116,12 @@ $(document).ready(function (){
     $('.search-query').val('');
   })
 
+  // binding do botão para limpar a lista :
+  $('#clear-list').click(function (event) {
+    event.preventDefault();
+    clear_list();
+  })
+
   // binding da busca:
   $('#search').click(function (event) {
     event.preventDefault();
@@ -114,9 +132,7 @@ $(document).ready(function (){
     var phone_list = $('#phone-list');
 
     // remove resultados anteriores:
-    $('#phone-list').find('.item').each(function (index) {
-      $(this).remove();
-    });
+    clear_list();
 
     var args = {nome: $('#nome').val()};
 
