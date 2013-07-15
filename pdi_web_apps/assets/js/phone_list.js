@@ -24,13 +24,18 @@ function toTitle (string) {
   });
 }
 
+/*
+  Verifica se a busca será simples (por nome) ou avançada (nome, empresa e função).
+*/
 function is_advanced () {
   var hidden_fields = $('tr.hidden-search-field');
   var expand_icon = $('#expand').find('i');
   return (hidden_fields.css('display') !== "none") && expand_icon.hasClass('icon-minus');
 }
 
-
+/*
+  Remove o resultado da última busca.
+*/
 function clear_list () {
   $('#phone-list').find('.item').each(function (index) {
     $(this).remove();
